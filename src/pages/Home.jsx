@@ -47,13 +47,13 @@ const Home = () => {
   );
 };
 
-const NavigationSection = styled.div`
+export const NavigationSection = styled.div`
   display: flex;
   justify-content: center;
   font-size: 30px;
   letter-spacing: 3px;
   font-weight: 800;
-  padding: 40px 0;
+  padding: 30px 0;
   border-bottom: 1px solid #bebebe;
 `;
 

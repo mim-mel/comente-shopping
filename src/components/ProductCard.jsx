@@ -31,13 +31,13 @@ const TextBlock = styled.div`
   max-width: 341px;
 `;
 
-const NameBlock = styled.div`
+export const NameBlock = styled.div`
   font-size: 20px;
   font-weight: 700;
-  padding: 20px 0 15px 0;
+  padding: 20px 0 5px 0;
 `;
 
-const DescriptionBlock = styled.div`
+export const DescriptionBlock = styled.div`
   font-size: 16px;
   font-weight: 400;
   line-height: 28px;
