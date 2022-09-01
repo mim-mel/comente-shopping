@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-const ThemaButton = ({ themaName }) => {
+const ThemaButton = ({ themaName, onClick }) => {
   return (
     <ThemaButtonStyled>
-      <div>{themaName}</div>
+      <div onClick={onClick}>{themaName}</div>
     </ThemaButtonStyled>
   );
 };
@@ -20,6 +20,8 @@ const ThemaButtonStyled = styled.div`
 
   padding: 17px 20px;
   width: fit-content;
+
+  cursor: pointer;
 `;
 
 export default ThemaButton;

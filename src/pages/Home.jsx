@@ -10,7 +10,15 @@ const Home = () => {
 
   console.log(data);
 
-  const [themaType, setThemaType] = useState("cup");
+  const [isThemaType, setIsThemaType] = useState("cup");
+
+  const sortThema = (item) => {
+    if (isThemaType === "cup") {
+      return item.filter((it) => it.themaType === "cup");
+    } else {
+      return item.filter((it) => it.themaType === "winter");
+    }
+  };
 
   return (
     <div>
@@ -21,19 +29,19 @@ const Home = () => {
         <ThemaButton
           themaName={"#겨울 방한템"}
           onClick={() => {
-            setThemaType("cup");
+            setIsThemaType("winter");
           }}
         />
         <ThemaButton
           themaName={"#따순 머그컵"}
           onClick={() => {
-            setThemaType("winter");
+            setIsThemaType("cup");
           }}
         />
       </ThemaSection>
       <GrayLine />
       <ProductSection>
-        {data.map((it) => (
+        {sortThema(data).map((it) => (
           <ProductCard
             key={it.id}
             name={it.name}
