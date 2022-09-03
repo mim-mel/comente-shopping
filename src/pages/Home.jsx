@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { MockDataContext } from "../App";
 
 const Home = () => {
-  const data = useContext(MockDataContext);
+  const { mockData } = useContext(MockDataContext);
 
   const navigate = useNavigate();
 
@@ -42,7 +42,7 @@ const Home = () => {
       </ThemaSection>
       <GrayLine />
       <ProductSection>
-        {sortThema(data).map((it) => (
+        {sortThema(mockData).map((it) => (
           <ProductCard
             key={it.id}
             id={it.id}

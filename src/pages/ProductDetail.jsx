@@ -7,12 +7,13 @@ import { useContext, useEffect, useState } from "react";
 
 const ProductDetail = () => {
   let { id } = useParams();
-  const data = useContext(MockDataContext);
+  const { mockData, mockReviews } = useContext(MockDataContext);
   const [curData, setCurData] = useState([]);
-  console.log(curData);
+  const [buttonUi, setButtonUi] = useState("detail");
+  console.log(mockReviews);
 
   useEffect(() => {
-    const getCurData = data.find((it) => parseInt(it.id) === parseInt(id));
+    const getCurData = mockData.find((it) => parseInt(it.id) === parseInt(id));
     setCurData(getCurData);
   }, []);
 
@@ -27,22 +28,50 @@ const ProductDetail = () => {
         <ImgBlock src={curData.thumbnail} />
         <TextBlock>
           <NameBlock>{curData.name}</NameBlock>
-          <DescriptionBlock>21,800원</DescriptionBlock>
+          <DescriptionBlock>{curData.price}</DescriptionBlock>
         </TextBlock>
 
         {/* Detail page and Review button */}
         <div>
-          <Button>상품 설명</Button>
-          <Button>상품 후기</Button>
+          <Button
+            onClick={() => {
+              setButtonUi("detail");
+            }}
+          >
+            상품 설명
+          </Button>
+
+          <Button
+            onClick={() => {
+              setButtonUi("review");
+            }}
+          >
+            상품 후기
+          </Button>
         </div>
 
         {/* Detail Page */}
-        <ImgBlock src="https://raw.githubusercontent.com/congchu/coment-shop-server/master/assets/images/product1_detail.jpeg" />
+        {buttonUi === "detail" ? <ImgBlock src={curData.mainImage} /> : null}
 
         {/* Review Page */}
-        <div>
-          <div>배송을 해주어서 편리했음</div>
-        </div>
+        {buttonUi === "review" ? (
+          <div>
+            {mockReviews.map((it, i) => (
+              <ReviewBox key={i}>
+                <ProfileBox>
+                  <ReviewProfile src={it.profileImage} />
+                  <ScoreBox>
+                    <ReviewScore>{it.score}</ReviewScore>
+                    <ReviewName>
+                      {it.username} | {it.createdDate}
+                    </ReviewName>
+                  </ScoreBox>
+                </ProfileBox>
+                <ReviewText>{it.reviewText}</ReviewText>
+              </ReviewBox>
+            ))}
+          </div>
+        ) : null}
 
         {/* Cart Button */}
         <CartButtonBlock>장바구니 담기</CartButtonBlock>
@@ -59,6 +88,7 @@ const Wrap = styled.div`
 `;
 
 const ImgBlock = styled.img`
+  margin-top: 50px;
   width: 390px;
 `;
 
@@ -90,6 +120,10 @@ const Button = styled.button`
   font-size: 16px;
   font-weight: 700;
   padding: 14px 20px;
+  transition: 0.2s;
+  :hover {
+    background: #24dbaf;
+  }
   cursor: pointer;
 `;
 
@@ -101,6 +135,42 @@ const CartButtonBlock = styled.button`
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
+`;
+
+const ReviewBox = styled.div`
+  background: #f6f6f6;
+  max-width: 390px;
+  margin: 20px;
+  height: 115px;
+  border-radius: 10px;
+`;
+
+const ProfileBox = styled.div`
+  display: flex;
+  width: 390px;
+  padding: 20px 20px 10px 20px;
+`;
+
+const ReviewProfile = styled.img`
+  width: 50px;
+  border-radius: 10px;
+`;
+
+const ScoreBox = styled.div`
+  display: block;
+  margin-left: 10px;
+`;
+
+const ReviewScore = styled.div`
+  margin-left: auto;
+`;
+
+const ReviewName = styled.div`
+  margin-top: 5px;
+`;
+
+const ReviewText = styled.div`
+  padding-left: 20px;
 `;
 
 export default ProductDetail;
