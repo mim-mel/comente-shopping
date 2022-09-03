@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from "react";
 
 import "./App.css";
-import { mockData, mockReviews } from "./data/mockData";
+import mockData from "./data/mockData";
 import Home from "./pages/Home";
 import ProductDetail from "./pages/ProductDetail";
 import Basket from "./pages/Basket";
@@ -12,7 +12,7 @@ export const MockDataContext = React.createContext();
 
 function App() {
   return (
-    <MockDataContext.Provider value={{ mockData, mockReviews }}>
+    <MockDataContext.Provider value={mockData}>
       <BrowserRouter basename="comento-shop">
         <Routes>
           <Route path="/" element={<Home />} />
