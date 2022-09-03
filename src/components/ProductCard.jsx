@@ -1,8 +1,11 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
-const ProductCard = ({ name, description, thumbnail }) => {
+const ProductCard = ({ id, name, description, thumbnail }) => {
+  const navigate = useNavigate();
+
   return (
-    <ProductCardBlock>
+    <ProductCardBlock onClick={() => navigate(`product/${id}`)}>
       <ImgBlock src={thumbnail} alt={name} />
       <TextBlock>
         <NameBlock>{name}</NameBlock>

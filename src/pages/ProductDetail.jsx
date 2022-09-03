@@ -1,8 +1,21 @@
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import Navigation from "../../components/Navigation";
-import { NavigationSection } from "../Home";
+import Navigation from "./../components/Navigation";
+import { NavigationSection } from "./Home";
+import { MockDataContext } from "../App";
+import { useContext, useEffect, useState } from "react";
 
 const ProductDetail = () => {
+  let { id } = useParams();
+  const data = useContext(MockDataContext);
+  const [curData, setCurData] = useState([]);
+  console.log(curData);
+
+  useEffect(() => {
+    const getCurData = data.find((it) => parseInt(it.id) === parseInt(id));
+    setCurData(getCurData);
+  }, []);
+
   return (
     <div>
       <NavigationSection>
@@ -11,9 +24,9 @@ const ProductDetail = () => {
 
       <Wrap>
         {/* Product Card */}
-        <ImgBlock src="https://raw.githubusercontent.com/congchu/coment-shop-server/master/assets/images/product1.jpg" />
+        <ImgBlock src={curData.thumbnail} />
         <TextBlock>
-          <NameBlock>비숑 블랙 머그잔</NameBlock>
+          <NameBlock>{curData.name}</NameBlock>
           <DescriptionBlock>21,800원</DescriptionBlock>
         </TextBlock>
 

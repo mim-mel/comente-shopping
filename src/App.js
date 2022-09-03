@@ -4,7 +4,7 @@ import React from "react";
 import "./App.css";
 import mockData from "./data/mockData";
 import Home from "./pages/Home";
-import ProductDetail from "./pages/Detailpage/ProductDetail";
+import ProductDetail from "./pages/ProductDetail";
 import Basket from "./pages/Basket";
 import { createContext } from "react";
 
@@ -16,7 +16,7 @@ function App() {
       <BrowserRouter basename="comento-shop">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/product/:productId" element={<ProductDetail />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/basket" element={<Basket />} />
         </Routes>
       </BrowserRouter>

@@ -3,12 +3,13 @@ import ProductCard from "../components/ProductCard";
 import ThemaButton from "../components/ThemaButton";
 import styled from "styled-components";
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { MockDataContext } from "../App";
 
 const Home = () => {
   const data = useContext(MockDataContext);
 
-  console.log(data);
+  const navigate = useNavigate();
 
   const [isThemaType, setIsThemaType] = useState("cup");
 
@@ -44,6 +45,7 @@ const Home = () => {
         {sortThema(data).map((it) => (
           <ProductCard
             key={it.id}
+            id={it.id}
             name={it.name}
             description={it.description}
             thumbnail={it.thumbnail}
