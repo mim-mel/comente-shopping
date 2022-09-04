@@ -4,19 +4,29 @@ import Navigation from "./../components/Navigation";
 import { NavigationSection } from "./Home";
 import { MockDataContext } from "../App";
 import { useContext, useEffect, useState } from "react";
+import { saveToStorage } from "./../utils/storage";
 
 const ProductDetail = () => {
   let { id } = useParams();
   const navigate = useNavigate();
   const { mockData, mockReviews } = useContext(MockDataContext);
   const [curData, setCurData] = useState([]);
+  // const [cartItem, setCartItem] = useState([]);
   const [buttonUi, setButtonUi] = useState("detail");
-  console.log(mockReviews);
 
   useEffect(() => {
     const getCurData = mockData.find((it) => parseInt(it.id) === parseInt(id));
     setCurData(getCurData);
   }, []);
+
+  console.log(curData);
+
+  const handleCartButton = () => {
+    //장바구니에 아이템을 담는다
+    saveToStorage(curData);
+    //장바구니 페이지로 이동한다
+    navigate("/basket");
+  };
 
   return (
     <div>
@@ -79,7 +89,9 @@ const ProductDetail = () => {
         ) : null}
 
         {/* Cart Button */}
-        <CartButtonBlock>장바구니 담기</CartButtonBlock>
+        <CartButtonBlock onClick={handleCartButton}>
+          장바구니 담기
+        </CartButtonBlock>
       </Wrap>
     </div>
   );
