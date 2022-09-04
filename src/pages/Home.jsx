@@ -23,9 +23,12 @@ const Home = () => {
 
   return (
     <div>
-      <NavigationSection>
-        <Navigation />
-      </NavigationSection>
+      <Navigation
+        text={"코멘토 쇼핑"}
+        onClick={() => {
+          navigate("/");
+        }}
+      />
       <ThemaSection>
         <ThemaButton
           themaName={"#겨울 방한템"}
@@ -55,16 +58,6 @@ const Home = () => {
     </div>
   );
 };
-
-export const NavigationSection = styled.div`
-  display: flex;
-  justify-content: center;
-  font-size: 30px;
-  letter-spacing: 3px;
-  font-weight: 800;
-  padding: 30px 0;
-  border-bottom: 1px solid #bebebe;
-`;
 
 const ThemaSection = styled.div`
   display: flex;

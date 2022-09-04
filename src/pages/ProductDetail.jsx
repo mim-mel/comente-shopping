@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Navigation from "./../components/Navigation";
 import { NavigationSection } from "./Home";
@@ -7,6 +7,7 @@ import { useContext, useEffect, useState } from "react";
 
 const ProductDetail = () => {
   let { id } = useParams();
+  const navigate = useNavigate();
   const { mockData, mockReviews } = useContext(MockDataContext);
   const [curData, setCurData] = useState([]);
   const [buttonUi, setButtonUi] = useState("detail");
@@ -19,9 +20,13 @@ const ProductDetail = () => {
 
   return (
     <div>
-      <NavigationSection>
-        <Navigation hasButton={true} />
-      </NavigationSection>
+      <Navigation
+        hasButton={true}
+        text={"코멘토 쇼핑"}
+        onClick={() => {
+          navigate("/");
+        }}
+      />
 
       <Wrap>
         {/* Product Card */}
