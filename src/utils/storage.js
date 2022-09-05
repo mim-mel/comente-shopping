@@ -1,4 +1,4 @@
-const getFromStorage = () => {
+export const getFromStorage = () => {
   const items = localStorage.getItem("basket");
   return items ? JSON.parse(items) : [];
 };

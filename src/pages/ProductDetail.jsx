@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Navigation from "./../components/Navigation";
+import BottomButton from "../components/BottomButton";
 import { NavigationSection } from "./Home";
 import { MockDataContext } from "../App";
 import { useContext, useEffect, useState } from "react";
@@ -89,9 +90,7 @@ const ProductDetail = () => {
         ) : null}
 
         {/* Cart Button */}
-        <CartButtonBlock onClick={handleCartButton}>
-          장바구니 담기
-        </CartButtonBlock>
+        <BottomButton text={"장바구니 버튼"} onClick={handleCartButton} />
       </Wrap>
     </div>
   );
@@ -141,16 +140,6 @@ const Button = styled.button`
   :hover {
     background: #24dbaf;
   }
-  cursor: pointer;
-`;
-
-const CartButtonBlock = styled.button`
-  width: 390px;
-  background: #24dbaf;
-  border: none;
-  padding: 25px;
-  font-size: 16px;
-  font-weight: 700;
   cursor: pointer;
 `;
 
