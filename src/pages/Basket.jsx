@@ -1,21 +1,31 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Navigation from "../components/Navigation";
 import BottomButton from "../components/BottomButton";
-import { getFromStorage } from "../utils/storage";
+import { getFromStorage, removeItem } from "../utils/storage";
 
 const Basket = () => {
   const navigate = useNavigate();
   const [cartItem, setCartItems] = useState([]);
+  const [basketLength, setBasketLength] = useState(0);
 
   useEffect(() => {
     const items = getFromStorage();
     setCartItems(items);
+    setBasketLength(items.length);
   }, []);
 
-  console.log(cartItem);
+  //무한루프를 방지하기 위해서 useEffect를 두번 만들어준다
+  useEffect(() => {
+    const items = getFromStorage();
+    setCartItems(items);
+  }, [basketLength]);
+
+  const onRemove = (productId) => {
+    removeItem(productId);
+    setBasketLength(basketLength - 1);
+  };
 
   return (
     <>
@@ -29,13 +39,14 @@ const Basket = () => {
         {cartItem.map((it) => (
           <CartItemBox key={it.id}>
             <ImgBlock src={it.thumbnail} />
-            <XButton>×</XButton>
+            <XButton onClick={() => onRemove(it.id)}>×</XButton>
             <TextBlock>
               <Name>{it.name}</Name>
               <Price>{it.price}</Price>
             </TextBlock>
           </CartItemBox>
         ))}
+        <div>상품금액({basketLength})개</div>
         <BottomButton text={"주문하기"} />
       </Wrap>
     </>

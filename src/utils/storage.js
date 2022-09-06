@@ -13,3 +13,15 @@ export const saveToStorage = (product) => {
     localStorage.setItem("basket", JSON.stringify(items));
   }
 };
+
+export const removeItem = (productId) => {
+  //아이템 꺼내오기
+  let items = getFromStorage();
+  //해당 아이템 삭제하기
+  items = items.filter((item) => item.id !== productId);
+  //localStorage basket 키 삭제하기
+  console.log(items);
+  localStorage.removeItem("basket");
+  //새로 집어넣기
+  localStorage.setItem("basket", JSON.stringify(items));
+};
