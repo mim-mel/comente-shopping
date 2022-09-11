@@ -13,7 +13,7 @@ const Home = () => {
 
   const [themeType, setThemeType] = useState("cup");
 
-  const sortTheme = (item) => {
+  const filterProducts = (item) => {
     if (themeType === "cup") {
       return item.filter((it) => it.themeType === "cup");
     } else {
@@ -45,7 +45,7 @@ const Home = () => {
       </ThemeSection>
       <GrayLine />
       <ProductSection>
-        {sortTheme(mockData).map((it) => (
+        {filterProducts(mockData).map((it) => (
           <ProductCard
             key={it.id}
             id={it.id}
