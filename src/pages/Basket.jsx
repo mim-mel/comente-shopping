@@ -12,6 +12,7 @@ const Basket = () => {
   const [addPrice, setAddPrice] = useState(0);
   const [delivery, setDelivery] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [showPopUp, setShowPopUp] = useState(false);
 
   useEffect(() => {
     const items = getFromStorage();
@@ -55,13 +56,20 @@ const Basket = () => {
     } else {
       deliveryPrice = 2500;
     }
-
     setDelivery(deliveryPrice);
+
+    //총합구하기
+    const endPrice = totalPrice + deliveryPrice;
+    setTotalPrice(endPrice);
   }, [basketItemLength]);
 
   const onRemove = (productId) => {
     removeItem(productId);
     setBasketItemLength(basketItemLength - 1);
+  };
+
+  const handleCheck = () => {
+    navigate("/");
   };
 
   return (
@@ -95,8 +103,16 @@ const Basket = () => {
           <div>총 비용</div>
           <div>{totalPrice}원</div>
         </TextBox>
-        <BottomButton text={"주문하기"} />
+        <BottomButton text={"주문하기"} onClick={() => setShowPopUp(true)} />
       </Wrap>
+      {showPopUp ? (
+        <PopUpBackGround onClick={() => setShowPopUp(false)}>
+          <PopUpWrab>
+            <PopUpText>주문되었습니다.</PopUpText>
+            <PopUpButton onClick={handleCheck}>확인</PopUpButton>
+          </PopUpWrab>
+        </PopUpBackGround>
+      ) : null}
     </>
   );
 };
@@ -160,6 +176,49 @@ const TextBox = styled.div`
   justify-content: space-between;
   width: 370px;
   margin: 10px 0;
+`;
+
+const PopUpBackGround = styled.div`
+  position: fixed;
+  top: 0;
+  background: rgb(0, 0, 0, 0.5);
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+`;
+
+const PopUpWrab = styled.div`
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  width: 300px;
+  height: 220px;
+  background: white;
+  border-radius: 20px;
+`;
+
+const PopUpText = styled.div`
+  position: fixed;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -35%);
+  font-size: 23px;
+  font-weight: 800;
+`;
+
+const PopUpButton = styled.button`
+  position: fixed;
+  top: 68%;
+  left: 50%;
+  transform: translate(-50%, -68%);
+  border: none;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 8px 50px;
+  background: #c4c4c4;
+  border-radius: 5px;
+  cursor: pointer;
 `;
 
 export default Basket;
