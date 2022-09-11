@@ -1,6 +1,6 @@
 import Navigation from "../components/Navigation";
 import ProductCard from "../components/ProductCard";
-import ThemaButton from "../components/ThemaButton";
+import ThemeButton from "../components/ThemeButton";
 import styled from "styled-components";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -11,13 +11,13 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-  const [isThemaType, setIsThemaType] = useState("cup");
+  const [themeType, setThemeType] = useState("cup");
 
-  const sortThema = (item) => {
-    if (isThemaType === "cup") {
-      return item.filter((it) => it.themaType === "cup");
+  const sortTheme = (item) => {
+    if (themeType === "cup") {
+      return item.filter((it) => it.themeType === "cup");
     } else {
-      return item.filter((it) => it.themaType === "winter");
+      return item.filter((it) => it.themeType === "winter");
     }
   };
 
@@ -29,23 +29,23 @@ const Home = () => {
           navigate("/");
         }}
       />
-      <ThemaSection>
-        <ThemaButton
-          themaName={"#겨울 방한템"}
+      <ThemeSection>
+        <ThemeButton
+          themeName={"#겨울 방한템"}
           onClick={() => {
-            setIsThemaType("winter");
+            setThemeType("winter");
           }}
         />
-        <ThemaButton
-          themaName={"#따순 머그컵"}
+        <ThemeButton
+          themeName={"#따순 머그컵"}
           onClick={() => {
-            setIsThemaType("cup");
+            setThemeType("cup");
           }}
         />
-      </ThemaSection>
+      </ThemeSection>
       <GrayLine />
       <ProductSection>
-        {sortThema(mockData).map((it) => (
+        {sortTheme(mockData).map((it) => (
           <ProductCard
             key={it.id}
             id={it.id}
@@ -59,7 +59,7 @@ const Home = () => {
   );
 };
 
-const ThemaSection = styled.div`
+const ThemeSection = styled.div`
   display: flex;
   gap: 20px;
   padding: 40px 12px;

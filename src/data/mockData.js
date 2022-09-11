@@ -1,7 +1,7 @@
 export const mockData = [
   {
     id: 1,
-    themaType: "cup",
+    themeType: "cup",
     price: 21000,
     name: "비숑 블랙 머그잔",
     description:
@@ -13,7 +13,7 @@ export const mockData = [
   },
   {
     id: 2,
-    themaType: "cup",
+    themeType: "cup",
     price: 5000,
     name: "가열 보온 티코스터 온열 원터치 컵 받침대",
     description:
@@ -25,7 +25,7 @@ export const mockData = [
   },
   {
     id: 3,
-    themaType: "cup",
+    themeType: "cup",
     price: 12000,
     name: "벨루즈까사 솜사탕 파스텔 머그 4종 세트",
     description:
@@ -37,7 +37,7 @@ export const mockData = [
   },
   {
     id: 4,
-    themaType: "winter",
+    themeType: "winter",
     price: 33000,
     name: "쏘쿨 냉감 이불",
     description: "점점 더워지는 여름, 소쿨 냉감 이불 덮고 주무세요",
@@ -48,7 +48,7 @@ export const mockData = [
   },
   {
     id: 5,
-    themaType: "winter",
+    themeType: "winter",
     price: 59000,
     name: "리모컨 에어 서큘레이터",
     description: "자연 바람 그대로를 담은, 리모컨 에어 서큘레이터",
@@ -59,7 +59,7 @@ export const mockData = [
   },
   {
     id: 6,
-    themaType: "winter",
+    themeType: "winter",
     price: 9000,
     name: "얼음 트레이 얼음틀 36구 4p + 아이스큐브",
     description:

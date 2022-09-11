@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
-const ThemaButton = ({ themaName, onClick }) => {
+const ThemeButton = ({ themaName, onClick }) => {
   return (
-    <ThemaButtonStyled onClick={onClick}>
+    <ThemeButtonStyled onClick={onClick}>
       <div>{themaName}</div>
-    </ThemaButtonStyled>
+    </ThemeButtonStyled>
   );
 };
 
-const ThemaButtonStyled = styled.div`
+const ThemeButtonStyled = styled.div`
   color: white;
   background: rgba(0, 0, 0, 0.3);
   border-radius: 12px;
@@ -24,4 +24,4 @@ const ThemaButtonStyled = styled.div`
   cursor: pointer;
 `;
 
-export default ThemaButton;
+export default ThemeButton;
