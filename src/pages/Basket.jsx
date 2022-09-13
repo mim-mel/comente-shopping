@@ -75,6 +75,7 @@ const Basket = () => {
   return (
     <>
       <Navigation
+        hasButton={true}
         text={"장바구니"}
         onClick={() => {
           navigate("/basket");
@@ -203,7 +204,7 @@ const PopUpText = styled.div`
   top: 35%;
   left: 50%;
   transform: translate(-50%, -35%);
-  font-size: 23px;
+  font-size: 20px;
   font-weight: 800;
 `;
 
@@ -213,7 +214,7 @@ const PopUpButton = styled.button`
   left: 50%;
   transform: translate(-50%, -68%);
   border: none;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   padding: 8px 50px;
   background: #c4c4c4;
